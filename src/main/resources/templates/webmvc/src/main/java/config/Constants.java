@@ -1,7 +1,10 @@
 package {{packageName}}.config;
 
 import java.time.ZoneId;
+import lombok.AccessLevel;
+import lombok.NoArgsConstructor;
 
+@NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class Constants {
 
   public static final String PROJECT_NAME = "{{projectName}}";
@@ -31,7 +34,6 @@ public class Constants {
     public static final String W3C_TRACE_PARENT = "traceparent";
     public static final String W3C_TRACE_STATE = "tracestate";
     public static final String W3C_TRACE_STATE_VENDOR_KEY = "micrometer";
-    public static final String NEOGEO_REQUEST_HEADER = "X-Mesh-ServiceName";
   }
 
   /**
@@ -51,8 +53,8 @@ public class Constants {
   }
 
   public static class LogKey {
-    public static final String HTTP_INBOUND_LOGGER = "{{packageName}}.http.api";
-    public static final String HTTP_OUTBOUND_LOGGER = "{{packageName}}.http.external";
+    public static final String HTTP_INBOUND_LOGGER = "{{packageName}}.http.inbound";
+    public static final String HTTP_OUTBOUND_LOGGER = "{{packageName}}.http.outboud";
     public static final String REQUEST = "request";
     public static final String RESPONSE = "response";
     public static final String USER_NAME = "userName";
