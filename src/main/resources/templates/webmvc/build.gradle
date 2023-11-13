@@ -181,7 +181,6 @@ spotless {
     encoding 'UTF-8'
     java {
         targetExclude('**/generated/**', "**/build/**")
-        importOrder()
         removeUnusedImports()
         endWithNewline()
     }
