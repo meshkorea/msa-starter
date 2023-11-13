@@ -8,13 +8,13 @@
 
 ## msa-starter
 
-메쉬코리아의 스택과 업무 표준에 따르는 스프링부트 마이크로서비스 베이스 프로젝트를 만드는 스타터 앱입니다. 이하 가이드에 따라 빌드된 결과물로 API Spec 작성부터 바로 시작할 수 있습니다.
+스프링부트 마이크로서비스 베이스 프로젝트를 만드는 스타터 앱입니다. 이하 가이드에 따라 빌드된 결과물로 API Spec 작성부터 바로 시작할 수 있습니다.
 
 ### 설치법
 
 방법 1: [Release](https://github.com/appkr/msa-starter/releases)에서 최신 바이너리 파일을 받아서 사용합니다(**jdk 불필요**).
 ```shell
-VERSION=3.4.3
+VERSION=3.4.4
 OS=macos
 ARCH=amd64 # for Intel cpu
 ARCH=aarch64 # for m1 or m2 cpu
@@ -43,14 +43,14 @@ msastarter
 
 방법 2: [Release](https://github.com/appkr/msa-starter/releases)에서 최신 jar 파일을 받아서 사용합니다(**jdk 필요**)
 ```shell
-VERSION=3.4.3
+VERSION=3.4.4
 wget https://github.com/appkr/msa-starter/releases/download/$VERSION/msastarter-$VERSION-all.jar
 java -jar msastarter-$VERSION-all.jar
 ```
 
 방법 3: [Release](https://github.com/appkr/msa-starter/releases)에서 최신 zip 파일을 받아서 사용합니다(**jdk 필요**)
 ```shell
-VERSION=3.4.3
+VERSION=3.4.4
 wget https://github.com/appkr/msa-starter/releases/download/$VERSION/msastarter-shadow-$VERSION.zip
 unzip msastarter-shadow-$VERSION.zip
 msastarter-shadow-$VERSION/bin/msastarter
@@ -98,11 +98,12 @@ $APP publish
 - IPC
   - REST: API first 개발 방법론 적용
   - Messaging: Kafka 설정 
-- 스케쥴 태스크 (분산 잠금 포함) 
-- Jenkins & K8S 설정
+- 스케쥴 태스크 (분산 잠금 포함)
 - 예제
   - Example API(MockMvc 테스트 포함)
   - Transactional Outbox 패턴 포함
+- (옵트인) 메쉬코리아의 스택과 업무 표준
+  - Jenkins & K8S 설정 외
 
 ## 기여하기
 
