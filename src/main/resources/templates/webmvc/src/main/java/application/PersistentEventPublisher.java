@@ -2,6 +2,7 @@ package {{packageName}}.application;
 
 import static net.logstash.logback.argument.StructuredArguments.kv;
 
+import {{packageName}}.application.port.out.message.MessageProducer;
 import {{packageName}}.application.port.out.PersistentEventRepository;
 import {{packageName}}.domain.PersistentEvent;
 

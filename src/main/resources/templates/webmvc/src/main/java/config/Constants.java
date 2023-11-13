@@ -49,6 +49,7 @@ public class Constants {
   }
 
   public static class MessagePolicy {
+    public static final String PRODUCER_CHANNEL = "";
     public static final Long DEFAULT_TIMEOUT = 5000L; // milliseconds
   }
 
