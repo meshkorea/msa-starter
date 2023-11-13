@@ -1,6 +1,5 @@
 package {{packageName}}.config.scheduler;
 
-import {{packageName}}.support.Timer;
 import java.util.concurrent.ThreadFactory;
 import org.jetbrains.annotations.NotNull;
 import org.slf4j.MDC;
@@ -46,13 +45,11 @@ public class SchedulerConfiguration implements SchedulingConfigurer {
     @Override
     public Thread newThread(@NotNull Runnable runnable) {
       return createThread(() -> {
-        Timer.start();
         MDC.setContextMap(MDC.getCopyOfContextMap());
         try {
           runnable.run();
         } finally {
           MDC.clear();
-          Timer.stop();
         }
       });
     }

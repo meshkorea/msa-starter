@@ -1,6 +1,5 @@
 package {{packageName}}.config.async;
 
-import {{packageName}}.support.Timer;
 import java.util.Map;
 import java.util.concurrent.Executor;
 import org.slf4j.MDC;
@@ -52,12 +51,10 @@ public class AsyncConfiguration {
       final Map<String, String> contextMap = MDC.getCopyOfContextMap();
       return () -> {
         MDC.setContextMap(contextMap);
-        Timer.start();
         try {
           runnable.run();
         } finally {
           MDC.clear();
-          Timer.stop();
         }
       };
     };
