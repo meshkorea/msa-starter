@@ -1,12 +1,12 @@
 package {{packageName}}.config;
 
+import {{packageName}}.adapter.out.persist.jpa.converter.*;
+import {{packageName}}.domain.Carbon;
 import com.fasterxml.jackson.core.JsonGenerator;
 import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.databind.*;
 import com.fasterxml.jackson.databind.module.SimpleModule;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
-import {{packageName}}.domain.Carbon;
-import {{packageName}}.domain.converter.*;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;

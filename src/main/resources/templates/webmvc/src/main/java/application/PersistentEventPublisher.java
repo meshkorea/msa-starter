@@ -5,7 +5,7 @@ import static net.logstash.logback.argument.StructuredArguments.kv;
 import {{packageName}}.application.port.out.message.MessageProducer;
 import {{packageName}}.application.port.out.persist.PersistentEventRepository;
 import {{packageName}}.domain.PersistentEvent;
-
+import {{packageName}}.domain.PersistentEvent.PersistentEventStatus;
 import java.time.Instant;
 import java.time.temporal.ChronoUnit;
 import java.util.List;
