@@ -4,58 +4,39 @@
  */
 package {{packageName}}.domain;
 
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-
-import jakarta.persistence.*;
-import java.io.Serializable;
 import java.time.Instant;
 import java.util.UUID;
-import lombok.ToString;
-import org.hibernate.annotations.DynamicUpdate;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
 
-@Entity
-@Table(name = "persistent_events")
-@DynamicUpdate
 @Getter
-@ToString
-@EqualsAndHashCode(of = "id")
-public class PersistentEvent implements Serializable {
+@AllArgsConstructor
+public class PersistentEvent {
 
-  private static final long serialVersionUID = 1L;
-
-  @Id
-  @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;
 
-  private UUID eventId = UUID.randomUUID();
+  private UUID eventId;
 
   private String eventType;
 
-  // Use externalId of body
   private UUID partitionKey;
 
-  // TODO create and interface and use that type. e.g. interface PersistentEventBody { UUID getExternalId(); }
-  // TODO define @Converter to serialize the body to JSON
-//  @Lob
   private String body;
 
-  private Instant createdAt = Instant.now();
+  private Instant createdAt;
 
   private Instant producedAt;
 
   private PersistentEventStatus status = PersistentEventStatus.CREATED;
 
-  protected PersistentEvent() {}
+  public static PersistentEvent newInstance(String eventType, UUID partitionKey, String body) {
+    return new PersistentEvent(eventType, partitionKey, body);
+  }
 
   private PersistentEvent(String eventType, UUID partitionKey, String body) {
     this.eventType = eventType;
     this.partitionKey = partitionKey;
     this.body = body;
-  }
-
-  public static PersistentEvent newInstance(String eventType, UUID partitionKey, String body) {
-    return new PersistentEvent(eventType, partitionKey, body);
   }
 
   public void markProduced() {
@@ -65,5 +46,17 @@ public class PersistentEvent implements Serializable {
 
   public void markFailed() {
     this.status = PersistentEventStatus.FAILED;
+  }
+
+  @Getter
+  @AllArgsConstructor
+  public enum PersistentEventStatus {
+
+    CREATED(10),
+    PRODUCED(20),
+    CONSUMED(30),
+    FAILED(40);
+
+    private final Integer code;
   }
 }

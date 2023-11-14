@@ -1,4 +1,4 @@
-package {{packageName}}.domain.converter;
+package {{packageName}}.adapter.out.persist.jpa.converter;
 
 import com.fasterxml.jackson.core.JsonGenerator;
 import com.fasterxml.jackson.databind.JsonSerializer;

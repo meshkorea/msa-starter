@@ -3,7 +3,7 @@ package {{packageName}}.application;
 import static net.logstash.logback.argument.StructuredArguments.kv;
 
 import {{packageName}}.application.port.out.message.MessageProducer;
-import {{packageName}}.application.port.out.PersistentEventRepository;
+import {{packageName}}.application.port.out.persist.PersistentEventRepository;
 import {{packageName}}.domain.PersistentEvent;
 
 import java.time.Instant;
@@ -28,12 +28,12 @@ public class PersistentEventPublisher {
   private final MessageProducer producer;
 
   @Transactional
-  @Scheduled(fixedDelayString = "PT50S", initialDelayString = "PT10S")
+  @Scheduled(fixedDelayString = "PT60S", initialDelayString = "PT10S")
   @SchedulerLock(name = "PersistentEventPublisher")
   @Async
   public void publish() {
-    final Instant timeScope = Instant.now().minus(1, ChronoUnit.MINUTES);
-    List<PersistentEvent> candidates = repository.findUnproducedByTimeScope(timeScope);
+    Instant fiveMinAgo = Instant.now().minus(5, ChronoUnit.MINUTES);
+    List<PersistentEvent> candidates = repository.findAllByStatusAndCreatedAfter(PersistentEventStatus.CREATED, fiveMinAgo);
     if (candidates.isEmpty()) {
       return;
     }

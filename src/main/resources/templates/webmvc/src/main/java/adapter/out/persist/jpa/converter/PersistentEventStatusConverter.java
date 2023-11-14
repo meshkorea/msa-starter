@@ -16,12 +16,12 @@
  * binding parameter [6] as [TIMESTAMP] - [null]
  * binding parameter [7] as [INTEGER] - [10]
  */
-package {{packageName}}.domain.converter;
+package {{packageName}}.adapter.out.persist.jpa.converter;
 
-import {{packageName}}.domain.PersistentEventStatus;
-import java.util.stream.Stream;
+import {{packageName}}.adapter.out.persist.jpa.PersistentEventEntity.PersistentEventStatus;
 import jakarta.persistence.AttributeConverter;
 import jakarta.persistence.Converter;
+import java.util.stream.Stream;
 
 @Converter(autoApply = true)
 public class PersistentEventStatusConverter implements AttributeConverter<PersistentEventStatus, Integer> {

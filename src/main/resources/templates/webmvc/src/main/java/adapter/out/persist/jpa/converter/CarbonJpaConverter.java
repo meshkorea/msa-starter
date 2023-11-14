@@ -1,4 +1,4 @@
-package {{packageName}}.domain.converter;
+package {{packageName}}.adapter.out.persist.jpa.converter;
 
 import {{packageName}}.domain.Carbon;
 import jakarta.persistence.AttributeConverter;

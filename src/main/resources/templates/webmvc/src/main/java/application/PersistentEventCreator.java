@@ -1,7 +1,7 @@
 package {{packageName}}.application;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import {{packageName}}.application.port.out.PersistentEventRepository;
+import {{packageName}}.application.port.out.persist.PersistentEventRepository;
 import {{packageName}}.domain.PersistentEvent;
 
 import java.io.IOException;

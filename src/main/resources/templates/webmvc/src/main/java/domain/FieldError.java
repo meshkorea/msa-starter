@@ -2,10 +2,7 @@ package {{packageName}}.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.io.Serializable;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
 
 @Getter
 @Setter
@@ -24,17 +21,8 @@ public class FieldError implements Serializable {
   @ToString.Include
   private String message;
 
-  public FieldError() {
-  }
-
   public FieldError(String dto, String field, String message) {
     this.objectName = dto;
-    this.field = field;
-    this.message = message;
-  }
-
-  public FieldError(Object field, String message) {
-    this.objectName = null;
     this.field = field;
     this.message = message;
   }

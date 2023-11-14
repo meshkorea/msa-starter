@@ -1,4 +1,4 @@
-package {{packageName}}.domain.converter;
+package {{packageName}}.adapter.out.persist.jpa.converter;
 
 import jakarta.persistence.AttributeConverter;
 import jakarta.persistence.Converter;
