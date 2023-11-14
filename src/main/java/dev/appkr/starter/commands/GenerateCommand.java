@@ -110,26 +110,16 @@ public abstract class GenerateCommand implements Callable<Integer> {
   }
 
   protected void getBuildInfo() throws IOException {
-    final String isVroongProject = CommandUtils.ask("Is vroong project(y/n, default: {})?", "n");
-    if (isVroongProject.equalsIgnoreCase("y")) {
-      buildInfo.setVroongProject(true);
-      buildInfo.setGroupName(BuildInfo.GROUP_NAME_VROONG);
-      buildInfo.setMediaType(BuildInfo.MEDIA_TYPE_VROONG);
-      buildInfo.setSkipTokens(asList(".DS_Store"));
-    }
-
-    buildInfo.setProjectName(CommandUtils.ask("What is the project name(default: {})?", buildInfo.getProjectName()));
-    buildInfo.setGroupName(CommandUtils.ask("What is the group name(default: {})?", buildInfo.getGroupName()));
-    buildInfo.setPortNumber(CommandUtils.ask("What is the web server port(default: {})?", buildInfo.getPortNumber()));
+    buildInfo.setSkipTokens(asList(".DS_Store"));
+    buildInfo.setProjectName(CommandUtils.ask("What is the project name(default: {})? ", buildInfo.getProjectName()));
+    buildInfo.setGroupName(CommandUtils.ask("What is the group name(default: {})? ", buildInfo.getGroupName()));
+    buildInfo.setPortNumber(CommandUtils.ask("What is the web server port(default: {})? ", buildInfo.getPortNumber()));
     buildInfo.setMediaType(
-        CommandUtils.ask("What is the media type for request and response(default: {})?", buildInfo.getMediaType()));
+        CommandUtils.ask("What is the media type for request and response(default: {})? ", buildInfo.getMediaType()));
     buildInfo.setPackageName(buildInfo.getGroupName() + "." + buildInfo.getProjectName());
 
-    final String includeExample = CommandUtils.ask("Include example codes(y/n, default: {})?", "y");
-    if (includeExample.equalsIgnoreCase("n")) {
-      buildInfo.setIncludeExample(false);
-      buildInfo.mergeSkipTokensWithExamples();
-    }
+    buildInfo.setIncludeExample(false); // example 관련 비활성
+    buildInfo.mergeSkipTokensWithExamples(); // example 관련 비활성
   }
 
   protected boolean shouldSkip(String path) {

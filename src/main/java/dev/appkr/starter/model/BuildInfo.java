@@ -28,12 +28,10 @@ public class BuildInfo {
 
   public static final String JAVA_VERSION_17 = "17";
   public static final String PROJECT_NAME_DEFAULT = "example";
-  public static final String GROUP_NAME_DEFAULT = "dev.appkr";
-  public static final String GROUP_NAME_VROONG = "com.vroong";
-  public static final String PACKAGE_NAME_DEFAULT = "dev.appkr.example";
+  public static final String GROUP_NAME_DEFAULT = "com.knowk";
+  public static final String PACKAGE_NAME_DEFAULT = "com.knowk.example";
   public static final String PORT_NUMBER_DEFAULT = "8080";
   public static final String MEDIA_TYPE_DEFAULT = "application/json";
-  public static final String MEDIA_TYPE_VROONG = "application/vnd.vroong.private.v1+json";
   public static final String DOCKER_IMAGE_JAVA17 = "amazoncorretto:17-alpine-jdk";
 
   boolean isArm = System.getProperty("os.arch").equals("aarch64");
