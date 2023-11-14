@@ -6,22 +6,20 @@ plugins {
     id 'com.gorylenko.gradle-git-properties' version "${gitPropertiesVersion}"
     id 'com.google.cloud.tools.jib' version "${jibVersion}"
     id 'org.openapi.generator' version "${openapiGeneratorVersion}"
-    id 'com.rivancic.asyncapi-gradle-plugin' version "${asyncapiGeneratorVersion}"
     id 'io.freefair.lombok' version "${lombokVersion}"
     id 'com.github.ben-manes.versions' version "${versionManagerVersion}"
     id 'com.avast.gradle.docker-compose' version "${dockerComposeVersion}"
     id 'com.diffplug.spotless' version "${spotlessVersion}"
 }
 
-apply from: 'gradle/docker.gradle'
-apply from: 'gradle/swagger.gradle'
+apply from: 'gradle/container.gradle'
+apply from: 'gradle/openapi.gradle'
 
 group = '{{groupName}}'
 version = project.version
 sourceCompatibility = '{{javaVersion}}'
 
 repositories {
-    {{#isVroongProject}}
     maven {
         url 'https://nexus.mm.meshkorea.net/repository/maven-public/'
 
@@ -30,7 +28,6 @@ repositories {
             password repoPass
         }
     }
-    {{/isVroongProject}}
     mavenCentral()
     maven { url 'https://repo.spring.io/milestone' }
 }
@@ -53,8 +50,6 @@ dependencies {
     annotationProcessor('org.springframework.boot:spring-boot-configuration-processor') {
         exclude group: 'com.vaadin.external.google', module: 'android-json'
     }
-    implementation "org.mapstruct:mapstruct:${mapstructVersion}"
-    annotationProcessor "org.mapstruct:mapstruct-processor:${mapstructVersion}"
 
     /**
      * Inbound adapters
@@ -88,8 +83,6 @@ dependencies {
 
     // jpa & database drivers
     implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
-    compileOnly 'org.hibernate.orm:hibernate-jpamodelgen:6.1.7.Final'
-    annotationProcessor 'org.hibernate.orm:hibernate-jpamodelgen:6.1.7.Final'
     runtimeOnly 'com.mysql:mysql-connector-j'
     testRuntimeOnly 'com.h2database:h2'
 

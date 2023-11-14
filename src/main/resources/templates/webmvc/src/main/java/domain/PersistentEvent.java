@@ -34,6 +34,7 @@ public class PersistentEvent {
   }
 
   private PersistentEvent(String eventType, UUID partitionKey, String body) {
+    this.eventId = UUID.randomUUID();
     this.eventType = eventType;
     this.partitionKey = partitionKey;
     this.body = body;
@@ -54,8 +55,7 @@ public class PersistentEvent {
 
     CREATED(10),
     PRODUCED(20),
-    CONSUMED(30),
-    FAILED(40);
+    FAILED(30);
 
     private final Integer code;
   }

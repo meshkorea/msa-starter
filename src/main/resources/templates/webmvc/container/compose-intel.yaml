@@ -1,7 +1,7 @@
 services:
 
   mysql:
-    image: appkr/mysql:8.0-arm64
+    image: appkr/mysql:8.0-amd64
     container_name: mysql
     volumes:
       - $HOME/mysql_data8:/var/lib/mysql/
@@ -18,7 +18,6 @@ services:
 
   zookeeper:
     image: confluentinc/cp-zookeeper
-    platform: linux/arm64
     container_name: zookeeper
     environment:
       ZOOKEEPER_CLIENT_PORT: 2181
@@ -31,7 +30,6 @@ services:
 
   kafka:
     image: confluentinc/cp-kafka
-    platform: linux/arm64
     container_name: kafka
     environment:
       KAFKA_CREATE_TOPICS: "local-{{projectName}}-output:1:1"
@@ -43,11 +41,3 @@ services:
       - 9092:9092
     healthcheck:
       test: nc -z localhost 9092 || exit 1
-
-  vroong-uaa:
-    image: appkr/vroong-uaa-compact:1.0.0-arm64
-    container_name: vroong-uaa
-    ports:
-      - 9999:9999
-    healthcheck:
-      test: curl -s http://localhost:9999/management/health || exit 1

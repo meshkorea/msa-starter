@@ -1,8 +1,9 @@
-@Library('meshkorea') _
-
-vroongMsaJava17MultiPipeline(
-    team: '',
-    ecrRepoName: 'vroong/{{projectName}}',
-    argoAppName: 'vroong-{{projectName}}',
-    gradleBuildArguments: '-x :clients:build'
-)
+// TODO: 젠킨스 사용시 정의하세요.
+//@Library('meshkorea') _
+//
+//vroongMsaJava17MultiPipeline(
+//    team: '',
+//    ecrRepoName: 'vroong/{{projectName}}',
+//    argoAppName: 'vroong-{{projectName}}',
+//    gradleBuildArguments: '-x :clients:build'
+//)

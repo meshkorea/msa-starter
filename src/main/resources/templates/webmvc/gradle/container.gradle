@@ -20,7 +20,7 @@ jib {
     extraDirectories {
         paths {
             path {
-                from = file('docker/jmx-exporter')
+                from = file('container/jmx-exporter')
                 into = '/jmx-exporter'
             }
         }
@@ -55,7 +55,7 @@ jib {
 }
 
 def dockerComposePath = System.getProperty('os.arch').equals('aarch64')
-        ? 'docker/compose-arm.yaml' : 'docker/compose-intel.yaml'
+        ? 'container/compose-arm.yaml' : 'container/compose-intel.yaml'
 dockerCompose {
     useComposeFiles = [dockerComposePath]
 }

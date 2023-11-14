@@ -30,7 +30,7 @@ public class PersistentEventPublisher {
   @Transactional
   @Scheduled(fixedDelayString = "PT60S", initialDelayString = "PT10S")
   @SchedulerLock(name = "PersistentEventPublisher")
-  @Async
+  @Async(value = "defaultExecutor")
   public void publish() {
     Instant fiveMinAgo = Instant.now().minus(5, ChronoUnit.MINUTES);
     List<PersistentEvent> candidates = repository.findAllByStatusAndCreatedAfter(PersistentEventStatus.CREATED, fiveMinAgo);
@@ -63,6 +63,8 @@ public class PersistentEventPublisher {
       } catch (Exception e) {
         candidate.markFailed();
         reportError(e, kv("persistentEventId", candidate.getId()));
+      } finally {
+        repository.save(candidate);
       }
     }
 
@@ -74,6 +76,6 @@ public class PersistentEventPublisher {
   }
 
   private void reportError(Exception e, Object... context) {
-    log.info("PersistentEventPublisher#publish failed {} {}", context, e.getMessage());
+    log.error("PersistentEventPublisher#publish failed {}", context, e);
   }
 }

@@ -10,7 +10,7 @@ plugins {
 version = project.version
 group = '{{groupName}}.{{projectName}}'
 archivesBaseName = '{{projectName}}-api-java-client'
-def specPath = "${parent.rootDir}/src/main/resources/swagger/api.yaml"
+def specPath = "${parent.rootDir}/src/main/resources/spec/openapi.yaml"
 
 repositories {
     mavenCentral()

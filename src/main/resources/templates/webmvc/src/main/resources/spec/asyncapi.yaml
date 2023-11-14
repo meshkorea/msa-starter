@@ -18,5 +18,5 @@ components: {{^includeExample}}{}{{/includeExample}}
     ExampleCreated:
       contentType: application/json
       payload:
-        $ref: 'api.yaml#/components/schemas/Example'
+        $ref: 'openapi.yaml#/components/schemas/Example'
 {{/includeExample}}

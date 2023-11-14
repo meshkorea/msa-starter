@@ -1,6 +1,6 @@
 openApiGenerate {
     generatorName = 'spring'
-    inputSpec = "${rootDir}/src/main/resources/swagger/api.yaml"
+    inputSpec = "${rootDir}/src/main/resources/spec/openapi.yaml"
     outputDir = "${buildDir}/openapi".toString()
     apiPackage = '{{packageName}}.rest'
     modelPackage = '{{packageName}}.rest'
@@ -29,18 +29,5 @@ compileJava.dependsOn('openApiGenerate')
 
 task redoc(type:Exec) {
     // For this to work correctly, `yarn global add redoc`
-    commandLine 'npx', 'redoc-cli', 'bundle', "${rootDir}/src/main/resources/swagger/api.yaml", '-o', "${buildDir}/redoc.html"
-}
-
-asyncapi {
-    // Prerequisite: brew install node
-    version = '1.9.14'
-    asyncapi = "${rootDir}/src/main/resources/swagger/asyncapi.yaml"
-    template = '@asyncapi/html-template'
-    output = "${buildDir}"
-    forceWrite = true
-    parameters = [
-            'singleFile': 'true',
-            'outFilename': 'asyncapi.html'
-    ]
+    commandLine 'npx', 'redoc-cli', 'bundle', "${rootDir}/src/main/resources/spec/openapi.yaml", '-o', "${buildDir}/redoc.html"
 }

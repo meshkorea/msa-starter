@@ -3,6 +3,7 @@ package {{packageName}}.adapter.out.persist.jpa;
 import jakarta.persistence.*;
 import java.io.Serializable;
 import java.time.Instant;
+import java.util.Optional;
 import java.util.UUID;
 import lombok.*;
 import org.hibernate.annotations.DynamicUpdate;
@@ -41,13 +42,14 @@ public class PersistentEventEntity implements Serializable {
   private PersistentEventStatus status;
 
   @Builder
-  public PersistentEventEntity(UUID eventId, String eventType, UUID partitionKey, String body, Instant createdAt,
+  public PersistentEventEntity(Long id, UUID eventId, String eventType, UUID partitionKey, String body, Instant createdAt,
                                Instant producedAt, PersistentEventStatus status) {
+    this.id = id;
     this.eventId = eventId;
     this.eventType = eventType;
     this.partitionKey = partitionKey;
     this.body = body;
-    this.createdAt = createdAt;
+    this.createdAt = Optional.ofNullable(createdAt).orElse(Instant.now());
     this.producedAt = producedAt;
     this.status = status;
   }
@@ -58,8 +60,7 @@ public class PersistentEventEntity implements Serializable {
 
     CREATED(10),
     PRODUCED(20),
-    CONSUMED(30),
-    FAILED(40);
+    FAILED(30);
 
     private final Integer code;
   }

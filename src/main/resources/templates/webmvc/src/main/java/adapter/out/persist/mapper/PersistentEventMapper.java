@@ -12,6 +12,7 @@ public class PersistentEventMapper {
 
   public PersistentEventEntity toEntity(PersistentEvent event) {
     return PersistentEventEntity.builder()
+        .id(event.getId())
         .eventId(event.getEventId())
         .eventType(event.getEventType())
         .partitionKey(event.getPartitionKey())

@@ -20,7 +20,7 @@ spring:
   datasource:
     type: com.zaxxer.hikari.HikariDataSource
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/local_{{projectName}}?useSSL=false
+    url: jdbc:mysql://localhost:3306/local_{{projectName}}?useSSL=false&allowPublicKeyRetrieval=true
     username: root
     password: secret
     hikari:
@@ -40,7 +40,7 @@ spring:
 
   cloud:
     function:
-      definition: consumeMessage
+      definition: messageConsumer
     stream:
       bindings:
         # CONVENTIONS: https://docs.spring.io/spring-cloud-stream/docs/current/reference/html/spring-cloud-stream.html#_functional_binding_names
@@ -48,10 +48,10 @@ spring:
         #   <functionName> + -out- + <index>
         # Consumer properties: https://docs.spring.io/spring-cloud-stream/docs/current/reference/html/spring-cloud-stream.html#_consumer_properties
         # Producer properties: https://docs.spring.io/spring-cloud-stream/docs/current/reference/html/spring-cloud-stream.html#_producer_properties
-        consumeMessage-in-0:
+        messageConsumer-in-0:
           group: {{projectName}}-comsumer-group
           destination: local-{{projectName}}-output
-        produceMessage-out-0:
+        messageProducer-out-0:
           destination: local-{{projectName}}-output
           header-mode: headers
       binders:
